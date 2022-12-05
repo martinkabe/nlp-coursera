@@ -10,17 +10,17 @@ alpha = 0.1
 epochs = 100
 
 # Load random data
-def load_data(n_rows, n_cols):
-    data, weights = generate_data(n_rows, n_cols)
+def load_data(n_features, n_values):
+    data, weights = generate_data(n_features, n_values)
     features = data.iloc[:,:-1].to_numpy()
     target = np.transpose(data.iloc[:,-1].to_numpy())
     return features, target, weights
 
 # generate dummy data
-def generate_data(n_rows, n_cols):
-    features = rg.random((n_rows, n_cols))
-    weights = rg.random((1, n_cols))[0]
-    targets = np.random.choice([0,1], n_rows)
+def generate_data(n_features, n_values):
+    features = rg.random((n_features, n_values))
+    weights = rg.random((1, n_values))[0]
+    targets = np.random.choice([0,1], n_features)
     data = pd.DataFrame(features, columns=["x0","x1","x2"])
     data["targets"] = targets
     return data, weights
